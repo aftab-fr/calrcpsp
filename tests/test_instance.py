@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-
 import pytest
 
 from calrcpsp import Instance, InstanceError, load_instance, load_instances

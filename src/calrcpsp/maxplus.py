@@ -26,6 +26,8 @@ Both routes to the earliest start times are provided and they agree:
 
 from __future__ import annotations
 
+from itertools import pairwise
+
 import numpy as np
 
 from .assignment import Assignment
@@ -105,7 +107,7 @@ def build_resource_matrix(
 
     for members in chains.values():
         members.sort(key=lambda idx: (rank[idx], idx))
-        for first, second in zip(members, members[1:]):
+        for first, second in pairwise(members):
             if durations[first] > matrix[first, second]:
                 matrix[first, second] = durations[first]
     return matrix

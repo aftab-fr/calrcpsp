@@ -149,7 +149,7 @@ def figure_calendar() -> None:
     )
 
     # (a) cumulative work-time function over three days
-    hours = [h / 8 for h in range(0, 8 * 24 * 3 + 1)]
+    hours = [h / 8 for h in range(8 * 24 * 3 + 1)]
     work = [calendar.W(origin + timedelta(hours=h), reference) for h in hours]
 
     for day in range(3):
@@ -167,10 +167,10 @@ def figure_calendar() -> None:
     ax1.set_title("(a) the work-time function", loc="left")
     ax1.annotate("flat across lunch", xy=(12.5, 4.0), xytext=(16, 1.0),
                  fontsize=6.6, color=MUTED,
-                 arrowprops=dict(arrowstyle="-", linewidth=0.6, color=MUTED))
+                 arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": MUTED})
     ax1.annotate("flat overnight", xy=(20.5, 8.0), xytext=(27, 4.6),
                  fontsize=6.6, color=MUTED,
-                 arrowprops=dict(arrowstyle="-", linewidth=0.6, color=MUTED))
+                 arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": MUTED})
     ax1.text(1.5, 23.3, "shaded = non-working", fontsize=6.6, color=MUTED)
     _tidy(ax1)
 
@@ -205,7 +205,7 @@ def figure_calendar() -> None:
     ax2.annotate("critical task, 6.93 work-hours,\npauses for lunch, ends 15:55",
                  xy=(14.9, len(ordered) - 1.3 - ordered.index(critical)),
                  xytext=(11.35, 1.9), fontsize=6.3, color=ORANGE,
-                 arrowprops=dict(arrowstyle="-", linewidth=0.6, color=ORANGE))
+                 arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": ORANGE})
     _tidy(ax2, grid_axis="x")
 
     fig.tight_layout()
@@ -244,11 +244,11 @@ def figure_scaling() -> None:
     ax.annotate(f"{total[-1]:.1f} ms", xy=(tasks[-1], total[-1]),
                 xytext=(tasks[-1] * 0.42, total[-1] * 3.4),
                 fontsize=7, color=BLUE,
-                arrowprops=dict(arrowstyle="-", linewidth=0.6, color=BLUE))
+                arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": BLUE})
     ax.annotate(f"{closure[-1]:.0f} ms", xy=(tasks[-1], closure[-1]),
                 xytext=(tasks[-1] * 0.30, closure[-1] * 0.32),
                 fontsize=7, color=ORANGE,
-                arrowprops=dict(arrowstyle="-", linewidth=0.6, color=ORANGE))
+                arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": ORANGE})
     ax.legend(frameon=False, loc="upper left", handlelength=2.6,
               borderaxespad=0.1)
     _tidy(ax, grid_axis="both")
@@ -263,7 +263,7 @@ def figure_compliance() -> None:
     rows = sorted(_read("instance_results.csv"), key=lambda r: int(r["n_tasks"]))
     labels = [f"{r['scenario_id']}  ({r['n_tasks']})" for r in rows]
     working = [float(r["working_time_compliance"]) for r in rows]
-    strict = [float(r["uninterrupted_compliance"]) for r in rows]
+    uninterrupted = [float(r["uninterrupted_compliance"]) for r in rows]
 
     positions = range(len(rows))
     height = 0.38
@@ -272,11 +272,11 @@ def figure_compliance() -> None:
     ax.barh([p + height / 2 + 0.01 for p in positions], working, height,
             color=BLUE, edgecolor="white", linewidth=0.8,
             label="working-time compliance", zorder=3)
-    ax.barh([p - height / 2 - 0.01 for p in positions], strict, height,
+    ax.barh([p - height / 2 - 0.01 for p in positions], uninterrupted, height,
             color=ORANGE, edgecolor="white", linewidth=0.8, hatch="////",
             label="uninterrupted compliance", zorder=3)
 
-    for p, value in zip(positions, strict):
+    for p, value in zip(positions, uninterrupted, strict=True):
         ax.text(value + 0.012, p - height / 2 - 0.01, f"{value:.3f}",
                 va="center", fontsize=6.6, color=MUTED)
 

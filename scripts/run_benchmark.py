@@ -64,7 +64,9 @@ def _environment(args: argparse.Namespace) -> dict:
     }
 
 
-def _time_solve(instance, strategy: str, method: str, repeats: int) -> tuple[list[float], list[float], list[float]]:
+def _time_solve(
+    instance, strategy: str, method: str, repeats: int
+) -> tuple[list[float], list[float], list[float]]:
     """Solve ``repeats`` times and return total, algebra and calendar timings."""
     totals, algebra, calendar = [], [], []
     for _ in range(repeats):
@@ -187,8 +189,10 @@ def run(args: argparse.Namespace) -> int:
                     disruption = disruption_from_spec(spec, schedule)
                     result = reschedule(schedule, disruption)
                     repair_times = [result.seconds]
-                    for _ in range(max(args.repeats - 1, 0)):
-                        repair_times.append(reschedule(schedule, disruption).seconds)
+                    repair_times.extend(
+                        reschedule(schedule, disruption).seconds
+                        for _ in range(max(args.repeats - 1, 0))
+                    )
                     repaired_precedence = precedence_violations(result.schedule)
                     repaired_conflicts = resource_conflicts(result.schedule)
                     repaired_compliance = compliance_report(result.schedule)

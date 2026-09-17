@@ -3,7 +3,7 @@
 **Calendar-aware resource-constrained project scheduling in Python.**
 
 [![tests](https://github.com/aftab-fr/calrcpsp/actions/workflows/tests.yml/badge.svg)](https://github.com/aftab-fr/calrcpsp/actions/workflows/tests.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/aftab-fr/calrcpsp/blob/main/LICENSE.txt)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 
 ---
@@ -248,6 +248,9 @@ hide them:
 - **Rescheduling is a full re-solve**, not an incremental matrix update. On
   these instances a repair takes under 19 ms, so the simpler and more clearly
   correct route was kept.
+- **Times are local wall-clock.** Calendars are timezone-naive by design, because
+  shifts, breaks and holidays are defined in local time on the shop floor. There is
+  no daylight-saving handling and no timezone conversion.
 - **No solver comparison.** `calrcpsp` reports its own behaviour. It ships no
   CP or MIP baseline.
 
@@ -256,30 +259,30 @@ hide them:
 ## Results on the published dataset
 
 Produced by `scripts/run_benchmark.py` on the twelve deposited instances.
-Raw output is in [`results/`](results/). Machine: Apple arm64, macOS 26.6.2,
+Raw output is in [`results/`](https://github.com/aftab-fr/calrcpsp/tree/main/results). Machine: Apple arm64, macOS 26.6.2,
 Python 3.13.2, NumPy 2.2.6. Solve times are the mean of 5 repeats.
 
 | Instance | Tasks | Makespan (work-h) | Solve (ms) | Utilisation | Working-time | Uninterrupted |
 |---|---:|---:|---:|---:|---:|---:|
-| tiny_quality_demo | 5 | 5.91 | 1.04 | 0.331 | 1.000 | 0.800 |
-| tiny_manufacturing_demo | 6 | 6.93 | 1.62 | 0.393 | 1.000 | 0.833 |
-| tiny_assembly_demo | 8 | 11.59 | 1.64 | 0.392 | 1.000 | 0.500 |
-| small_disrupted_manufacturing_25 | 25 | 20.76 | 2.42 | 0.431 | 1.000 | 0.440 |
-| small_multi_resource_35 | 35 | 20.26 | 2.82 | 0.461 | 1.000 | 0.457 |
-| small_shift_operations_40 | 40 | 17.63 | 3.21 | 0.540 | 1.000 | 0.800 |
-| medium_complex_manufacturing_120 | 120 | 34.34 | 6.28 | 0.487 | 1.000 | 0.483 |
-| medium_multi_shift_factory_150 | 150 | 63.51 | 6.57 | 0.352 | 1.000 | 0.667 |
-| medium_supply_chain_180 | 180 | 57.31 | 6.48 | 0.401 | 1.000 | 0.478 |
-| large_industrial_scale_500 | 500 | 46.92 | 15.95 | 0.769 | 1.000 | 0.692 |
-| large_enterprise_manufacturing_750 | 750 | 76.32 | 17.57 | 0.668 | 1.000 | 0.688 |
-| large_mega_scale_factory_1000 | 1000 | 92.88 | 15.26 | 0.769 | 1.000 | 1.000 |
+| tiny_quality_demo | 5 | 5.91 | 1.10 | 0.331 | 1.000 | 0.800 |
+| tiny_manufacturing_demo | 6 | 6.93 | 1.60 | 0.393 | 1.000 | 0.833 |
+| tiny_assembly_demo | 8 | 11.59 | 1.62 | 0.392 | 1.000 | 0.500 |
+| small_disrupted_manufacturing_25 | 25 | 20.76 | 2.50 | 0.431 | 1.000 | 0.440 |
+| small_multi_resource_35 | 35 | 20.26 | 2.94 | 0.461 | 1.000 | 0.457 |
+| small_shift_operations_40 | 40 | 17.63 | 3.30 | 0.540 | 1.000 | 0.800 |
+| medium_complex_manufacturing_120 | 120 | 34.34 | 6.27 | 0.487 | 1.000 | 0.483 |
+| medium_multi_shift_factory_150 | 150 | 63.51 | 6.80 | 0.352 | 1.000 | 0.667 |
+| medium_supply_chain_180 | 180 | 57.31 | 6.53 | 0.401 | 1.000 | 0.478 |
+| large_industrial_scale_500 | 500 | 46.92 | 16.28 | 0.769 | 1.000 | 0.692 |
+| large_enterprise_manufacturing_750 | 750 | 76.32 | 18.35 | 0.668 | 1.000 | 0.688 |
+| large_mega_scale_factory_1000 | 1000 | 92.88 | 15.24 | 0.769 | 1.000 | 1.000 |
 
 All 12 instances solved. All 12 schedules are feasible: no precedence
 violation, no resource double booking, and every scheduled interval inside
 working time. No failures and no timeouts against a 3600 s budget.
 
 All 34 stored disruption records were applied and repaired, and all 34 repaired
-schedules are feasible. Repair takes 0.78 ms to 17.09 ms. The makespan increase
+schedules are feasible. Repair takes 0.80 ms to 17.34 ms. The makespan increase
 ranges from 0.0 % to 258.4 %; five of the 34 records are absorbed entirely by
 existing slack and move the makespan not at all.
 
@@ -356,12 +359,12 @@ CI runs the suite on Linux, macOS and Windows, on Python 3.10 to 3.13.
 
 ## Citing
 
-See [`CITATION.cff`](CITATION.cff). Please also cite the dataset article above
+See [`CITATION.cff`](https://github.com/aftab-fr/calrcpsp/blob/main/CITATION.cff). Please also cite the dataset article above
 if you use the CA-RCPSP instances.
 
 ## Licence
 
-MIT. See [`LICENSE.txt`](LICENSE.txt).
+MIT. See [`LICENSE.txt`](https://github.com/aftab-fr/calrcpsp/blob/main/LICENSE.txt).
 
 The six JSON instances in `tests/data/` come from the CA-RCPSP dataset and are
 redistributed under CC BY 4.0 with attribution; see `tests/data/SOURCE.md`.

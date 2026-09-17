@@ -7,6 +7,7 @@ plain numbers or lists of violations.  Nothing here changes a schedule.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from itertools import pairwise
 from typing import Any
 
 from .schedule import Schedule
@@ -131,7 +132,7 @@ def resource_conflicts(schedule: Schedule) -> list[tuple[str, str, str, float]]:
     out: list[tuple[str, str, str, float]] = []
     for resource_id, tasks in schedule.by_resource().items():
         ordered = sorted(tasks, key=lambda t: t.start_work)
-        for first, second in zip(ordered, ordered[1:]):
+        for first, second in pairwise(ordered):
             overlap = first.end_work - second.start_work
             if overlap > _TOL:
                 out.append((resource_id, first.task_id, second.task_id, float(overlap)))
@@ -153,7 +154,7 @@ def resource_utilization(schedule: Schedule) -> dict[str, float]:
         per_resource[task.resource_id] = per_resource.get(task.resource_id, 0.0) + task.duration
 
     if available <= 0:
-        out = {key: 0.0 for key in per_resource}
+        out = dict.fromkeys(per_resource, 0.0)
         out["mean"] = 0.0
         return out
 

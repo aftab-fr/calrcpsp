@@ -1,0 +1,7 @@
+include LICENSE.txt
+include README.md
+include CITATION.cff
+include requirements-lock.txt
+recursive-include tests *.py *.json *.md
+recursive-include scripts *.py
+recursive-include results *.csv *.json

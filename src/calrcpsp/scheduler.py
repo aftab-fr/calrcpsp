@@ -18,8 +18,8 @@ from .instance import Instance
 from .maxplus import (
     build_precedence_matrix,
     build_resource_matrix,
-    combine_matrices,
     closure,
+    combine_matrices,
     earliest_start_times,
     latest_start_times,
     topological_order,
@@ -57,7 +57,7 @@ def to_calendar_schedule(
     starts: list[datetime] = []
     ends: list[datetime] = []
     segments: list[tuple[tuple[datetime, datetime], ...]] = []
-    for begin, duration in zip(start_work, durations):
+    for begin, duration in zip(start_work, durations, strict=True):
         start_cal = calendar.W_inverse(float(begin), project_start)
         end_cal = calendar.W_inverse(float(begin) + float(duration), project_start)
         starts.append(start_cal)

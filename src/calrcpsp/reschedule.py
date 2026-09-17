@@ -57,13 +57,13 @@ class Disruption:
     label: str = ""
 
     @classmethod
-    def task_delay(cls, task_id: str, extra_hours: float, label: str = "") -> "Disruption":
+    def task_delay(cls, task_id: str, extra_hours: float, label: str = "") -> Disruption:
         return cls("task_delay", task_id, float(extra_hours), label or f"delay on {task_id}")
 
     @classmethod
     def resource_outage(
         cls, resource_id: str, extra_hours: float, label: str = ""
-    ) -> "Disruption":
+    ) -> Disruption:
         return cls(
             "resource_outage", resource_id, float(extra_hours), label or f"outage on {resource_id}"
         )

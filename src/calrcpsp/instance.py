@@ -9,10 +9,11 @@ not only the twelve deposited instances.
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 __all__ = [
     "InstanceError",
@@ -48,7 +49,7 @@ class Task:
     deadline: str | None = None
 
     @classmethod
-    def from_dict(cls, raw: Mapping[str, Any]) -> "Task":
+    def from_dict(cls, raw: Mapping[str, Any]) -> Task:
         try:
             task_id = str(raw["task_id"])
             duration = float(raw["duration"])
@@ -82,7 +83,7 @@ class Resource:
     machine_type: str | None = None
 
     @classmethod
-    def from_dict(cls, raw: Mapping[str, Any]) -> "Resource":
+    def from_dict(cls, raw: Mapping[str, Any]) -> Resource:
         try:
             resource_id = str(raw["resource_id"])
         except KeyError as exc:
@@ -117,7 +118,7 @@ class ShiftSpec:
     days: tuple[int, ...]
 
     @classmethod
-    def from_dict(cls, raw: Mapping[str, Any]) -> "ShiftSpec":
+    def from_dict(cls, raw: Mapping[str, Any]) -> ShiftSpec:
         try:
             return cls(
                 name=str(raw.get("name", "shift")),
@@ -143,7 +144,7 @@ class CalendarSpec:
     holidays: tuple[date, ...] = ()
 
     @classmethod
-    def from_dict(cls, raw: Mapping[str, Any]) -> "CalendarSpec":
+    def from_dict(cls, raw: Mapping[str, Any]) -> CalendarSpec:
         shifts = tuple(ShiftSpec.from_dict(s) for s in raw.get("shifts") or ())
         if not shifts:
             raise InstanceError("calendar_requirements defines no shifts")
@@ -180,7 +181,7 @@ class DisruptionSpec:
     description: str = ""
 
     @classmethod
-    def from_dict(cls, raw: Mapping[str, Any]) -> "DisruptionSpec":
+    def from_dict(cls, raw: Mapping[str, Any]) -> DisruptionSpec:
         try:
             return cls(
                 type=str(raw["type"]),
@@ -260,7 +261,7 @@ class Instance:
     # -- construction ----------------------------------------------------
 
     @classmethod
-    def from_dict(cls, raw: Mapping[str, Any], source_path: Path | None = None) -> "Instance":
+    def from_dict(cls, raw: Mapping[str, Any], source_path: Path | None = None) -> Instance:
         for key in ("tasks", "resources", "calendar_requirements"):
             if key not in raw:
                 raise InstanceError(f"instance is missing required top-level key {key!r}")
@@ -309,7 +310,7 @@ class Instance:
         _assert_acyclic(inst)
         return inst
 
-    def with_durations(self, durations: Sequence[float]) -> "Instance":
+    def with_durations(self, durations: Sequence[float]) -> Instance:
         """Return a copy with replaced task durations, used by rescheduling."""
         if len(durations) != self.n_tasks:
             raise InstanceError("duration vector length does not match task count")
@@ -323,7 +324,7 @@ class Instance:
                 earliest_start=t.earliest_start,
                 deadline=t.deadline,
             )
-            for t, d in zip(self.tasks, durations)
+            for t, d in zip(self.tasks, durations, strict=True)
         )
         return Instance(
             scenario_id=self.scenario_id,

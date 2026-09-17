@@ -19,9 +19,9 @@ horizon.  There is no time quantisation: a shift boundary at 08:00 is
 from __future__ import annotations
 
 from bisect import bisect_left, bisect_right
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime, time, timedelta
-from typing import Iterable, Sequence
 
 from .instance import CalendarSpec, ShiftSpec
 
@@ -129,7 +129,7 @@ class WorkCalendar:
     # -- construction ----------------------------------------------------
 
     @classmethod
-    def from_spec(cls, spec: CalendarSpec) -> "WorkCalendar":
+    def from_spec(cls, spec: CalendarSpec) -> WorkCalendar:
         """Build a calendar from an instance's ``calendar_requirements``."""
         return cls(
             shifts=spec.shifts,
@@ -139,7 +139,7 @@ class WorkCalendar:
         )
 
     @classmethod
-    def standard_day(cls, holidays: Iterable[date] = ()) -> "WorkCalendar":
+    def standard_day(cls, holidays: Iterable[date] = ()) -> WorkCalendar:
         """08:00 to 17:00 Monday to Friday with a 12:00 to 13:00 break."""
         return cls(
             shifts=[ShiftSpec("day", "08:00", "17:00", (0, 1, 2, 3, 4))],
@@ -149,7 +149,7 @@ class WorkCalendar:
         )
 
     @classmethod
-    def continuous(cls, holidays: Iterable[date] = ()) -> "WorkCalendar":
+    def continuous(cls, holidays: Iterable[date] = ()) -> WorkCalendar:
         """Round the clock, every day, apart from holidays."""
         return cls(
             shifts=[ShiftSpec("all", "00:00", "24:00", (0, 1, 2, 3, 4, 5, 6))],

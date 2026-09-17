@@ -4,11 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "calrcpsp"
-version = "1.0.0"
+version = "1.0.1"
 description = "Calendar-aware resource-constrained project scheduling with max-plus algebra"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { file = "LICENSE.txt" }
+license = "MIT"
+license-files = ["LICENSE.txt"]
 keywords = [
     "project scheduling",
     "resource-constrained scheduling",
@@ -21,7 +22,6 @@ keywords = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -40,7 +40,7 @@ email = "md.uddin@utbm.fr"
 
 [project.optional-dependencies]
 test = ["pytest>=8.0,<9.0"]
-dev = ["pytest>=8.0,<9.0", "ruff>=0.6"]
+dev = ["pytest>=8.0,<9.0", "ruff==0.16.8"]
 
 [project.scripts]
 calrcpsp = "calrcpsp.cli:main"
@@ -64,3 +64,19 @@ filterwarnings = ["error"]
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+
+[tool.ruff.lint]
+# Pinned explicitly. Without this the rule set is whatever the installed
+# ruff version happens to default to, which changes between releases.
+select = ["E", "W", "F", "I", "UP", "B", "C4", "SIM", "PIE", "PERF", "ISC", "RUF"]
+ignore = [
+    # __all__ is grouped by topic to mirror the package layout, not sorted.
+    "RUF022",
+    # Trying each candidate format in turn is the clearest way to parse the
+    # time and dependency fields, and neither loop is in a hot path.
+    "PERF203",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# The benchmark runner must record a failure and carry on, not abort the run.
+"scripts/run_benchmark.py" = ["BLE001"]

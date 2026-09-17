@@ -157,17 +157,17 @@ class Schedule:
         compliance = compliance_report(self)
         utilisation = resource_utilization(self)
         lines = [
-            f"instance        : {self.instance.scenario_id} "
-            f"({self.instance.n_tasks} tasks, {self.instance.n_resources} resources)",
+            (f"instance        : {self.instance.scenario_id} "
+             f"({self.instance.n_tasks} tasks, {self.instance.n_resources} resources)"),
             f"calendar        : {self.calendar.name}",
             f"project start   : {self.project_start:%Y-%m-%d %H:%M}",
             f"project end     : {self.end:%Y-%m-%d %H:%M}",
-            f"makespan        : {self.makespan:.3f} work-hours "
-            f"({self.elapsed_hours:.1f} calendar hours elapsed)",
+            (f"makespan        : {self.makespan:.3f} work-hours "
+             f"({self.elapsed_hours:.1f} calendar hours elapsed)"),
             f"critical path   : {len(self.critical_path())} of {self.instance.n_tasks} tasks",
             f"mean utilisation: {utilisation['mean']:.3f}",
-            f"compliance      : working-time {compliance.working_time:.4f}, "
-            f"uninterrupted {compliance.uninterrupted:.4f}",
+            (f"compliance      : working-time {compliance.working_time:.4f}, "
+             f"uninterrupted {compliance.uninterrupted:.4f}"),
             f"solve time      : {self.solve_seconds * 1000:.2f} ms ({self.method})",
         ]
         return "\n".join(lines)

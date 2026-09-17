@@ -38,7 +38,7 @@ def test_precedence_matrix_holds_predecessor_durations(tiny):
 def test_resource_matrix_chains_tasks_on_one_resource(tiny):
     assignment = assign_resources(tiny)
     matrix = build_resource_matrix(tiny, assignment)
-    for resource_id, members in assignment.groups().items():
+    for members in assignment.groups().values():
         edges = sum(
             1
             for a in members

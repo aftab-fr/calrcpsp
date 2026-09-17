@@ -24,8 +24,8 @@ one is the default, and both numbers appear in the output.
 
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Mapping, Sequence
 
 from .instance import Instance, InstanceError, Resource
 
@@ -131,7 +131,7 @@ def assign_resources(instance: Instance, strategy: str = "balanced") -> Assignme
 
     for task in instance.tasks:
         required = task.required_skills
-        scored = [(resource,) + _score(resource, required) for resource in instance.resources]
+        scored = [(resource, *_score(resource, required)) for resource in instance.resources]
 
         if strategy == "balanced":
             # Only resources holding at least one required skill are eligible.

@@ -24,7 +24,6 @@ from calrcpsp import (
     validate_schedule,
 )
 
-
 # -- calendar compliance -------------------------------------------------
 
 def test_every_scheduled_interval_is_working_time(instance_path):
