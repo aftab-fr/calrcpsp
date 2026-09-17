@@ -1,0 +1,518 @@
+{
+  "scenario_id": "small_disrupted_manufacturing_25",
+  "name": "Manufacturing with Disruptions (25 tasks)",
+  "scale": "small",
+  "type": "manufacturing",
+  "random_seed": 45,
+  "generated_at": "2025-09-04T12:00:00",
+  "schema_version": "1.0.0",
+  "metadata": {
+    "num_tasks": 25,
+    "num_dependencies": 9,
+    "num_resources": 10,
+    "dependency_density": 0.25
+  },
+  "tasks": [
+    {
+      "task_id": "T001",
+      "task_type": "processing",
+      "duration": 4.42,
+      "required_skills": [
+        "cnc_operation"
+      ],
+      "priority": 3,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T002",
+      "task_type": "processing",
+      "duration": 4.39,
+      "required_skills": [
+        "cnc_operation"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T003",
+      "task_type": "maintenance",
+      "duration": 3.57,
+      "required_skills": [
+        "maintenance"
+      ],
+      "priority": 2,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T004",
+      "task_type": "processing",
+      "duration": 7.27,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T005",
+      "task_type": "processing",
+      "duration": 3.86,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 2,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T006",
+      "task_type": "setup",
+      "duration": 1.03,
+      "required_skills": [
+        "setup",
+        "cnc_operation"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T007",
+      "task_type": "processing",
+      "duration": 3.3,
+      "required_skills": [
+        "cnc_operation",
+        "machining"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T008",
+      "task_type": "maintenance",
+      "duration": 3.74,
+      "required_skills": [
+        "maintenance"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T009",
+      "task_type": "processing",
+      "duration": 5.98,
+      "required_skills": [
+        "cnc_operation",
+        "machining"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T010",
+      "task_type": "setup",
+      "duration": 1.07,
+      "required_skills": [
+        "setup",
+        "cnc_operation"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T011",
+      "task_type": "assembly",
+      "duration": 4.45,
+      "required_skills": [
+        "mill_operation"
+      ],
+      "priority": 3,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T012",
+      "task_type": "setup",
+      "duration": 0.77,
+      "required_skills": [
+        "setup",
+        "cnc_operation"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T013",
+      "task_type": "processing",
+      "duration": 7.4,
+      "required_skills": [
+        "cnc_operation",
+        "machining"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T014",
+      "task_type": "processing",
+      "duration": 2.89,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T015",
+      "task_type": "processing",
+      "duration": 7.95,
+      "required_skills": [
+        "cnc_operation",
+        "machining"
+      ],
+      "priority": 2,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T016",
+      "task_type": "inspection",
+      "duration": 1.68,
+      "required_skills": [
+        "quality_control"
+      ],
+      "priority": 2,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T017",
+      "task_type": "maintenance",
+      "duration": 3.38,
+      "required_skills": [
+        "maintenance"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T018",
+      "task_type": "assembly",
+      "duration": 5.6,
+      "required_skills": [
+        "mill_operation",
+        "assembly"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T019",
+      "task_type": "processing",
+      "duration": 4.68,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 3,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T020",
+      "task_type": "inspection",
+      "duration": 1.75,
+      "required_skills": [
+        "quality_control"
+      ],
+      "priority": 3,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T021",
+      "task_type": "setup",
+      "duration": 1.83,
+      "required_skills": [
+        "cnc_operation"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T022",
+      "task_type": "transport",
+      "duration": 0.25,
+      "required_skills": [
+        "assembly"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T023",
+      "task_type": "inspection",
+      "duration": 1.38,
+      "required_skills": [
+        "quality_control"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T024",
+      "task_type": "processing",
+      "duration": 2.58,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T025",
+      "task_type": "assembly",
+      "duration": 4.28,
+      "required_skills": [
+        "mill_operation",
+        "assembly"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    }
+  ],
+  "dependencies": [
+    [
+      "T003",
+      "T004"
+    ],
+    [
+      "T002",
+      "T004"
+    ],
+    [
+      "T004",
+      "T007"
+    ],
+    [
+      "T006",
+      "T008"
+    ],
+    [
+      "T001",
+      "T011"
+    ],
+    [
+      "T005",
+      "T019"
+    ],
+    [
+      "T009",
+      "T014"
+    ],
+    [
+      "T020",
+      "T025"
+    ],
+    [
+      "T024",
+      "T025"
+    ]
+  ],
+  "resources": [
+    {
+      "resource_id": "M001",
+      "name": "Grinder 1",
+      "resource_type": "Machine",
+      "machine_type": "grinder",
+      "skills": {
+        "grinding": 0.9,
+        "finishing": 0.85
+      },
+      "cost_per_hour": 58.82,
+      "efficiency": 0.985
+    },
+    {
+      "resource_id": "M002",
+      "name": "Grinder 2",
+      "resource_type": "Machine",
+      "machine_type": "grinder",
+      "skills": {
+        "grinding": 0.9,
+        "finishing": 0.85
+      },
+      "cost_per_hour": 41.27,
+      "efficiency": 0.842
+    },
+    {
+      "resource_id": "M003",
+      "name": "Cnc Lathe 3",
+      "resource_type": "Machine",
+      "machine_type": "cnc_lathe",
+      "skills": {
+        "machining": 0.9,
+        "precision_machining": 0.8
+      },
+      "cost_per_hour": 56.93,
+      "efficiency": 0.969
+    },
+    {
+      "resource_id": "M004",
+      "name": "Cnc Lathe 4",
+      "resource_type": "Machine",
+      "machine_type": "cnc_lathe",
+      "skills": {
+        "machining": 0.9,
+        "precision_machining": 0.8
+      },
+      "cost_per_hour": 60.7,
+      "efficiency": 0.911
+    },
+    {
+      "resource_id": "W001",
+      "name": "Worker 1",
+      "resource_type": "Worker",
+      "skills": {
+        "quality_control": 0.71,
+        "assembly": 0.71
+      },
+      "cost_per_hour": 15.24,
+      "efficiency": 0.883
+    },
+    {
+      "resource_id": "W002",
+      "name": "Worker 2",
+      "resource_type": "Worker",
+      "skills": {
+        "mill_operation": 0.81,
+        "quality_control": 0.69
+      },
+      "cost_per_hour": 16.93,
+      "efficiency": 0.985
+    },
+    {
+      "resource_id": "W003",
+      "name": "Worker 3",
+      "resource_type": "Worker",
+      "skills": {
+        "assembly": 0.98,
+        "quality_control": 0.63,
+        "maintenance": 0.83
+      },
+      "cost_per_hour": 32.74,
+      "efficiency": 0.87
+    },
+    {
+      "resource_id": "W004",
+      "name": "Worker 4",
+      "resource_type": "Worker",
+      "skills": {
+        "setup": 0.65,
+        "mill_operation": 1.0,
+        "quality_control": 0.81
+      },
+      "cost_per_hour": 27.68,
+      "efficiency": 0.939
+    },
+    {
+      "resource_id": "W005",
+      "name": "Worker 5",
+      "resource_type": "Worker",
+      "skills": {
+        "mill_operation": 0.67,
+        "quality_control": 0.7
+      },
+      "cost_per_hour": 27.93,
+      "efficiency": 0.871
+    },
+    {
+      "resource_id": "W006",
+      "name": "Worker 6",
+      "resource_type": "Worker",
+      "skills": {
+        "mill_operation": 0.84,
+        "cnc_operation": 0.7
+      },
+      "cost_per_hour": 29.91,
+      "efficiency": 0.9
+    }
+  ],
+  "calendar_requirements": {
+    "shift_type": "standard_day",
+    "shifts": [
+      {
+        "name": "day",
+        "start": "08:00",
+        "end": "17:00",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "lunch_break": {
+      "start": "12:00",
+      "end": "13:00"
+    },
+    "holidays": [
+      "2025-01-01",
+      "2025-05-01",
+      "2025-07-14",
+      "2025-12-25"
+    ]
+  },
+  "disruptions": [
+    {
+      "type": "machine_failure",
+      "severity": "low",
+      "duration_hours": 1.5,
+      "probability": 0.1,
+      "description": "Minor calibration"
+    },
+    {
+      "type": "worker_absence",
+      "severity": "medium",
+      "duration_hours": 4.0,
+      "probability": 0.05,
+      "description": "Sick leave"
+    },
+    {
+      "type": "resource_unavailable",
+      "severity": "high",
+      "duration_hours": 8.0,
+      "probability": 0.04,
+      "description": "Critical maintenance"
+    },
+    {
+      "type": "calendar_change",
+      "severity": "medium",
+      "duration_hours": 2.0,
+      "probability": 0.02,
+      "description": "Emergency shift change"
+    }
+  ],
+  "expected_performance": {
+    "makespan_hours": 20.0,
+    "resource_utilization": 0.71
+  }
+}

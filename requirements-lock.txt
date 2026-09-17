@@ -1,0 +1,5 @@
+# Exact versions this release was developed and tested against.
+# Install with:  pip install -r requirements-lock.txt
+# The looser ranges in pyproject.toml are what normal installs use.
+numpy==2.2.6
+pytest==8.4.0

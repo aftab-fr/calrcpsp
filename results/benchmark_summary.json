@@ -1,0 +1,101 @@
+{
+  "environment": {
+    "calrcpsp_version": "1.0.0",
+    "python": "3.13.2",
+    "numpy": "2.2.6",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "run_at": "2026-09-17T21:26:56",
+    "repeats": 5,
+    "timeout_seconds": 3600.0,
+    "assignment_strategy": "balanced"
+  },
+  "dataset": "/Users/aftab/Downloads/main journal paper/carm-plus-dataset/data/scenarios",
+  "totals": {
+    "instances_found": 12,
+    "instances_solved": 12,
+    "instances_feasible": 12,
+    "instances_failed": 0,
+    "instances_timed_out": 0,
+    "disruption_records": 34,
+    "disruptions_repaired": 34,
+    "disruptions_failed": 0,
+    "repaired_all_feasible": true
+  },
+  "aggregates": {
+    "working_time_compliance_min": 1.0,
+    "uninterrupted_compliance_min": 0.44,
+    "uninterrupted_compliance_max": 1.0,
+    "solve_ms_min": 1.0369,
+    "solve_ms_max": 17.567,
+    "reschedule_ms_min": 0.7765,
+    "reschedule_ms_max": 17.0923,
+    "makespan_increase_pct_min": 0.0,
+    "makespan_increase_pct_max": 258.3979,
+    "skill_coverage_mean_min": 0.7
+  },
+  "by_scale": {
+    "large": {
+      "instances": 3,
+      "makespan_mean": 72.04,
+      "makespan_min": 46.92,
+      "makespan_max": 92.88,
+      "solve_ms_mean": 16.2581,
+      "solve_ms_min": 15.2603,
+      "solve_ms_max": 17.567,
+      "utilization_mean": 0.7353,
+      "utilization_min": 0.6683,
+      "utilization_max": 0.7689,
+      "uninterrupted_mean": 0.7933,
+      "uninterrupted_min": 0.688,
+      "uninterrupted_max": 1.0
+    },
+    "medium": {
+      "instances": 3,
+      "makespan_mean": 51.72,
+      "makespan_min": 34.34,
+      "makespan_max": 63.51,
+      "solve_ms_mean": 6.4427,
+      "solve_ms_min": 6.2776,
+      "solve_ms_max": 6.5704,
+      "utilization_mean": 0.4135,
+      "utilization_min": 0.3524,
+      "utilization_max": 0.4869,
+      "uninterrupted_mean": 0.5426,
+      "uninterrupted_min": 0.4778,
+      "uninterrupted_max": 0.6667
+    },
+    "small": {
+      "instances": 3,
+      "makespan_mean": 19.55,
+      "makespan_min": 17.63,
+      "makespan_max": 20.76,
+      "solve_ms_mean": 2.8157,
+      "solve_ms_min": 2.4182,
+      "solve_ms_max": 3.2092,
+      "utilization_mean": 0.4773,
+      "utilization_min": 0.4311,
+      "utilization_max": 0.5401,
+      "uninterrupted_mean": 0.5657,
+      "uninterrupted_min": 0.44,
+      "uninterrupted_max": 0.8
+    },
+    "tiny": {
+      "instances": 3,
+      "makespan_mean": 8.1433,
+      "makespan_min": 5.91,
+      "makespan_max": 11.59,
+      "solve_ms_mean": 1.4299,
+      "solve_ms_min": 1.0369,
+      "solve_ms_max": 1.6352,
+      "utilization_mean": 0.3721,
+      "utilization_min": 0.331,
+      "utilization_max": 0.3931,
+      "uninterrupted_mean": 0.7111,
+      "uninterrupted_min": 0.5,
+      "uninterrupted_max": 0.8333
+    }
+  },
+  "failures": []
+}

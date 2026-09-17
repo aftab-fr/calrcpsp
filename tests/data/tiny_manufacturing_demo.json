@@ -1,0 +1,199 @@
+{
+  "scenario_id": "tiny_manufacturing_demo",
+  "name": "Basic Manufacturing Demo",
+  "scale": "tiny",
+  "type": "manufacturing",
+  "random_seed": 42,
+  "generated_at": "2025-09-04T12:00:00",
+  "schema_version": "1.0.0",
+  "metadata": {
+    "num_tasks": 6,
+    "num_dependencies": 1,
+    "num_resources": 5,
+    "dependency_density": 0.3
+  },
+  "tasks": [
+    {
+      "task_id": "T001",
+      "task_type": "inspection",
+      "duration": 0.54,
+      "required_skills": [
+        "quality_control"
+      ],
+      "priority": 2,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T002",
+      "task_type": "processing",
+      "duration": 1.72,
+      "required_skills": [
+        "cnc_operation"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T003",
+      "task_type": "processing",
+      "duration": 2.53,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T004",
+      "task_type": "setup",
+      "duration": 1.17,
+      "required_skills": [
+        "setup",
+        "cnc_operation"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T005",
+      "task_type": "setup",
+      "duration": 0.73,
+      "required_skills": [
+        "setup",
+        "cnc_operation"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T006",
+      "task_type": "processing",
+      "duration": 6.93,
+      "required_skills": [
+        "machining",
+        "cnc_operation"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    }
+  ],
+  "dependencies": [
+    [
+      "T001",
+      "T002"
+    ]
+  ],
+  "resources": [
+    {
+      "resource_id": "M001",
+      "name": "Saw 1",
+      "resource_type": "Machine",
+      "machine_type": "saw",
+      "skills": {
+        "cutting": 0.9,
+        "machining": 0.75
+      },
+      "cost_per_hour": 39.61,
+      "efficiency": 0.814
+    },
+    {
+      "resource_id": "M002",
+      "name": "Mill 2",
+      "resource_type": "Machine",
+      "machine_type": "mill",
+      "skills": {
+        "machining": 0.85,
+        "drilling": 0.9
+      },
+      "cost_per_hour": 68.65,
+      "efficiency": 0.997
+    },
+    {
+      "resource_id": "W001",
+      "name": "Worker 1",
+      "resource_type": "Worker",
+      "skills": {
+        "cnc_operation": 0.75
+      },
+      "cost_per_hour": 24.07,
+      "efficiency": 0.967
+    },
+    {
+      "resource_id": "W002",
+      "name": "Worker 2",
+      "resource_type": "Worker",
+      "skills": {
+        "setup": 0.74
+      },
+      "cost_per_hour": 28.4,
+      "efficiency": 0.94
+    },
+    {
+      "resource_id": "W003",
+      "name": "Worker 3",
+      "resource_type": "Worker",
+      "skills": {
+        "maintenance": 0.81,
+        "cnc_operation": 0.7,
+        "mill_operation": 0.78,
+        "quality_control": 0.7,
+        "assembly": 0.7
+      },
+      "cost_per_hour": 20.4,
+      "efficiency": 0.985
+    }
+  ],
+  "calendar_requirements": {
+    "shift_type": "standard_day",
+    "shifts": [
+      {
+        "name": "day",
+        "start": "08:00",
+        "end": "17:00",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "lunch_break": {
+      "start": "12:00",
+      "end": "13:00"
+    },
+    "holidays": [
+      "2025-01-01",
+      "2025-05-01",
+      "2025-07-14",
+      "2025-12-25"
+    ]
+  },
+  "disruptions": [
+    {
+      "type": "machine_failure",
+      "severity": "low",
+      "duration_hours": 1.5,
+      "probability": 0.1,
+      "description": "Minor machine calibration issue"
+    },
+    {
+      "type": "worker_absence",
+      "severity": "medium",
+      "duration_hours": 4.0,
+      "probability": 0.05,
+      "description": "Worker sick leave"
+    }
+  ],
+  "expected_performance": {
+    "makespan_hours": 12.5,
+    "resource_utilization": 0.75
+  }
+}

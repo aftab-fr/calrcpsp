@@ -1,0 +1,220 @@
+{
+  "scenario_id": "tiny_assembly_demo",
+  "name": "Simple Assembly Line",
+  "scale": "tiny",
+  "type": "manufacturing",
+  "random_seed": 43,
+  "generated_at": "2025-09-04T12:00:00",
+  "schema_version": "1.0.0",
+  "metadata": {
+    "num_tasks": 8,
+    "num_dependencies": 1,
+    "num_resources": 5,
+    "dependency_density": 0.3
+  },
+  "tasks": [
+    {
+      "task_id": "T001",
+      "task_type": "processing",
+      "duration": 5.87,
+      "required_skills": [
+        "cnc_operation"
+      ],
+      "priority": 3,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T002",
+      "task_type": "inspection",
+      "duration": 1.69,
+      "required_skills": [
+        "quality_control"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T003",
+      "task_type": "processing",
+      "duration": 4.03,
+      "required_skills": [
+        "cnc_operation",
+        "machining"
+      ],
+      "priority": 2,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T004",
+      "task_type": "processing",
+      "duration": 1.75,
+      "required_skills": [
+        "cnc_operation"
+      ],
+      "priority": 2,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T005",
+      "task_type": "processing",
+      "duration": 4.59,
+      "required_skills": [
+        "machining",
+        "cnc_operation"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T006",
+      "task_type": "maintenance",
+      "duration": 1.82,
+      "required_skills": [
+        "maintenance"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T007",
+      "task_type": "processing",
+      "duration": 1.43,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 3,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T008",
+      "task_type": "processing",
+      "duration": 1.54,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    }
+  ],
+  "dependencies": [
+    [
+      "T002",
+      "T003"
+    ]
+  ],
+  "resources": [
+    {
+      "resource_id": "M001",
+      "name": "Drill Press 1",
+      "resource_type": "Machine",
+      "machine_type": "drill_press",
+      "skills": {
+        "drilling": 0.95,
+        "machining": 0.7
+      },
+      "cost_per_hour": 32.5,
+      "efficiency": 0.918
+    },
+    {
+      "resource_id": "M002",
+      "name": "Drill Press 2",
+      "resource_type": "Machine",
+      "machine_type": "drill_press",
+      "skills": {
+        "drilling": 0.95,
+        "machining": 0.7
+      },
+      "cost_per_hour": 66.41,
+      "efficiency": 0.934
+    },
+    {
+      "resource_id": "W001",
+      "name": "Worker 1",
+      "resource_type": "Worker",
+      "skills": {
+        "assembly": 0.87
+      },
+      "cost_per_hour": 20.94,
+      "efficiency": 0.98
+    },
+    {
+      "resource_id": "W002",
+      "name": "Worker 2",
+      "resource_type": "Worker",
+      "skills": {
+        "setup": 0.79,
+        "quality_control": 0.77,
+        "cnc_operation": 0.91
+      },
+      "cost_per_hour": 22.16,
+      "efficiency": 0.929
+    },
+    {
+      "resource_id": "W003",
+      "name": "Worker 3",
+      "resource_type": "Worker",
+      "skills": {
+        "maintenance": 0.64,
+        "mill_operation": 0.81,
+        "setup": 0.78
+      },
+      "cost_per_hour": 15.76,
+      "efficiency": 0.801
+    }
+  ],
+  "calendar_requirements": {
+    "shift_type": "standard_day",
+    "shifts": [
+      {
+        "name": "day",
+        "start": "08:00",
+        "end": "17:00",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "lunch_break": {
+      "start": "12:00",
+      "end": "13:00"
+    },
+    "holidays": [
+      "2025-01-01",
+      "2025-05-01",
+      "2025-07-14",
+      "2025-12-25"
+    ]
+  },
+  "disruptions": [
+    {
+      "type": "quality_issue",
+      "severity": "medium",
+      "duration_hours": 2.0,
+      "probability": 0.08,
+      "description": "Quality control failure requiring rework"
+    },
+    {
+      "type": "supply_shortage",
+      "severity": "high",
+      "duration_hours": 6.0,
+      "probability": 0.03,
+      "description": "Component delivery delay"
+    }
+  ],
+  "expected_performance": {
+    "makespan_hours": 18.2,
+    "resource_utilization": 0.82
+  }
+}

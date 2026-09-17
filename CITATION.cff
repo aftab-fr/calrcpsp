@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "calrcpsp: calendar-aware resource-constrained project scheduling"
+abstract: >-
+  A Python library for project scheduling under work-calendar constraints.
+  It reads the published CA-RCPSP benchmark format, builds max-plus
+  scheduling matrices, and returns start times, makespan, task slack, the
+  critical path and calendar compliance. It also repairs a schedule after a
+  disruption. Shifts, breaks and holidays are handled exactly through a
+  cumulative work-time function and its inverse.
+version: "1.0.0"
+date-released: "2026-09-17"
+license: MIT
+repository-code: "https://github.com/aftab-fr/calrcpsp"
+url: "https://github.com/aftab-fr/calrcpsp"
+keywords:
+  - project scheduling
+  - resource-constrained scheduling
+  - calendar constraints
+  - max-plus algebra
+  - RCPSP
+  - operations research
+authors:
+  - family-names: Uddin
+    given-names: Md Aftab
+    email: md.uddin@utbm.fr
+    affiliation: "M-Plus Group, Lachapelle Sous Rougemont, France"
+  - family-names: Gaber
+    given-names: Jaafar
+    affiliation: "Universite Marie et Louis Pasteur, UTBM, CNRS, Institut FEMTO-ST, Belfort, France"
+  - family-names: Petitjean
+    given-names: Pierre
+    affiliation: "M-Plus Group, Lachapelle Sous Rougemont, France"
+  - family-names: Cortinovis
+    given-names: Francois
+    affiliation: "M-Plus Group, Lachapelle Sous Rougemont, France"
+references:
+  - type: article
+    title: >-
+      An expert-informed multi-scale synthetic benchmark dataset for
+      calendar-aware resource-constrained project scheduling (CA-RCPSP)
+    authors:
+      - family-names: Uddin
+        given-names: Md Aftab
+      - family-names: Gaber
+        given-names: Jaafar
+      - family-names: Petitjean
+        given-names: Pierre
+      - family-names: Cortinovis
+        given-names: Francois
+    journal: "Data in Brief"
+    volume: 69
+    start: 113256
+    year: 2026
+    doi: "10.1016/j.dib.2026.113256"

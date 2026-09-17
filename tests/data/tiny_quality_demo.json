@@ -1,0 +1,193 @@
+{
+  "scenario_id": "tiny_quality_demo",
+  "name": "Quality Control Flow",
+  "scale": "tiny",
+  "type": "manufacturing",
+  "random_seed": 44,
+  "generated_at": "2025-09-04T12:00:00",
+  "schema_version": "1.0.0",
+  "metadata": {
+    "num_tasks": 5,
+    "num_dependencies": 2,
+    "num_resources": 5,
+    "dependency_density": 0.3
+  },
+  "tasks": [
+    {
+      "task_id": "T001",
+      "task_type": "setup",
+      "duration": 1.31,
+      "required_skills": [
+        "setup"
+      ],
+      "priority": 4,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T002",
+      "task_type": "processing",
+      "duration": 1.2,
+      "required_skills": [
+        "machining"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T003",
+      "task_type": "processing",
+      "duration": 4.6,
+      "required_skills": [
+        "cnc_operation",
+        "machining"
+      ],
+      "priority": 3,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T004",
+      "task_type": "setup",
+      "duration": 1.01,
+      "required_skills": [
+        "setup",
+        "cnc_operation"
+      ],
+      "priority": 5,
+      "earliest_start": null,
+      "deadline": null
+    },
+    {
+      "task_id": "T005",
+      "task_type": "processing",
+      "duration": 1.66,
+      "required_skills": [
+        "machining",
+        "cnc_operation"
+      ],
+      "priority": 1,
+      "earliest_start": null,
+      "deadline": null
+    }
+  ],
+  "dependencies": [
+    [
+      "T001",
+      "T003"
+    ],
+    [
+      "T001",
+      "T004"
+    ]
+  ],
+  "resources": [
+    {
+      "resource_id": "M001",
+      "name": "Cnc Lathe 1",
+      "resource_type": "Machine",
+      "machine_type": "cnc_lathe",
+      "skills": {
+        "machining": 0.9,
+        "precision_machining": 0.8
+      },
+      "cost_per_hour": 63.69,
+      "efficiency": 0.963
+    },
+    {
+      "resource_id": "M002",
+      "name": "Grinder 2",
+      "resource_type": "Machine",
+      "machine_type": "grinder",
+      "skills": {
+        "grinding": 0.9,
+        "finishing": 0.85
+      },
+      "cost_per_hour": 65.49,
+      "efficiency": 0.948
+    },
+    {
+      "resource_id": "W001",
+      "name": "Worker 1",
+      "resource_type": "Worker",
+      "skills": {
+        "maintenance": 0.93,
+        "setup": 0.85,
+        "assembly": 0.84
+      },
+      "cost_per_hour": 25.81,
+      "efficiency": 0.847
+    },
+    {
+      "resource_id": "W002",
+      "name": "Worker 2",
+      "resource_type": "Worker",
+      "skills": {
+        "maintenance": 0.85,
+        "setup": 0.99
+      },
+      "cost_per_hour": 29.75,
+      "efficiency": 0.856
+    },
+    {
+      "resource_id": "W003",
+      "name": "Worker 3",
+      "resource_type": "Worker",
+      "skills": {
+        "mill_operation": 0.95,
+        "cnc_operation": 0.7,
+        "quality_control": 0.7
+      },
+      "cost_per_hour": 26.6,
+      "efficiency": 0.921
+    }
+  ],
+  "calendar_requirements": {
+    "shift_type": "standard_day",
+    "shifts": [
+      {
+        "name": "day",
+        "start": "08:00",
+        "end": "17:00",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "lunch_break": {
+      "start": "12:00",
+      "end": "13:00"
+    },
+    "holidays": [
+      "2025-01-01",
+      "2025-05-01",
+      "2025-07-14",
+      "2025-12-25"
+    ]
+  },
+  "disruptions": [
+    {
+      "type": "shift_change_delay",
+      "severity": "low",
+      "duration_hours": 0.5,
+      "probability": 0.15,
+      "description": "Extended quality inspection time"
+    },
+    {
+      "type": "machine_failure",
+      "severity": "low",
+      "duration_hours": 1.0,
+      "probability": 0.06,
+      "description": "Equipment calibration required"
+    }
+  ],
+  "expected_performance": {
+    "makespan_hours": 8.5,
+    "resource_utilization": 0.68
+  }
+}

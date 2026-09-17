@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calrcpsp"
+version = "1.0.0"
+description = "Calendar-aware resource-constrained project scheduling with max-plus algebra"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE.txt" }
+keywords = [
+    "project scheduling",
+    "resource-constrained scheduling",
+    "calendar constraints",
+    "max-plus algebra",
+    "RCPSP",
+    "CA-RCPSP",
+    "operations research",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.26,<3.0",
+]
+
+[[project.authors]]
+name = "Md Aftab Uddin"
+email = "md.uddin@utbm.fr"
+
+[project.optional-dependencies]
+test = ["pytest>=8.0,<9.0"]
+dev = ["pytest>=8.0,<9.0", "ruff>=0.6"]
+
+[project.scripts]
+calrcpsp = "calrcpsp.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/aftab-fr/calrcpsp"
+Repository = "https://github.com/aftab-fr/calrcpsp"
+Issues = "https://github.com/aftab-fr/calrcpsp/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+calrcpsp = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+filterwarnings = ["error"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
