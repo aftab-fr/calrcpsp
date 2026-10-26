@@ -151,6 +151,68 @@ schedule = solve(instance, calendar=night_shop)
 
 ---
 
+## Complete example: calendar, schedule, feasibility, disruption
+
+The whole path end to end, with no benchmark file involved.
+
+```python
+from datetime import date, datetime
+
+from calrcpsp import (
+    CalendarSpec, Disruption, Instance, Resource, ShiftSpec, Task, WorkCalendar,
+    compliance_report, reschedule, solve, validate_schedule,
+)
+
+# 1. Define a calendar: two shifts, the evening one crossing midnight,
+#    a lunch break, and a public holiday.
+shifts = [ShiftSpec("day", "06:00", "14:00", (0, 1, 2, 3, 4)),
+          ShiftSpec("evening", "17:00", "01:00", (0, 1, 2, 3, 4))]
+spec = CalendarSpec("two_shift", tuple(shifts), ("12:00", "12:30"),
+                    (date(2025, 5, 1),))
+calendar = WorkCalendar.from_spec(spec)
+
+# 2. Build a project in code, with no benchmark file.
+tasks = (Task("cut", "machining", 6.0, ("cnc",)),
+         Task("weld", "joining", 4.0, ("welding",)),
+         Task("inspect", "quality", 2.0, ("cmm",)))
+resources = (Resource("M1", "CNC mill", "Machine", {"cnc": 0.9}),
+             Resource("W1", "Welder", "Worker", {"welding": 0.8, "cmm": 0.7}))
+project = Instance("demo", tasks, (("cut", "weld"), ("weld", "inspect")),
+                   resources, spec)
+
+# 3. Schedule it.
+schedule = solve(project, calendar=calendar,
+                 project_start=datetime(2025, 4, 30, 0, 0))
+print(schedule.makespan, schedule.task("inspect").end)
+
+# 4. Check it is feasible, and look at both compliance measures.
+report = validate_schedule(schedule)
+print(report["feasible"], report["precedence_violations"],
+      report["resource_conflicts"])
+print(compliance_report(schedule).working_time,
+      compliance_report(schedule).uninterrupted)
+
+# 5. Break it, repair it, and confirm the repair is still feasible.
+result = reschedule(schedule, Disruption.task_delay("cut", extra_hours=5.0))
+print(result.new_makespan, round(result.delta_percent, 1),
+      validate_schedule(result.schedule)["feasible"])
+```
+
+Output:
+
+```
+12.0 2025-04-30 20:30:00          # makespan in work-hours, and when it ends
+True 0 0                          # feasible: no precedence or resource violation
+1.0 0.3333333333333333            # all work inside working time; 1 of 3 tasks uninterrupted
+17.0 41.7 True                    # after a 5 h delay on "cut", still feasible
+```
+
+`cut` needs 6 work-hours from 06:00 on Wednesday. The day shift ends at 14:00
+and the evening shift does not open until 17:00, so it finishes at 17:30 rather
+than 12:00, and it counts as interrupted. 1 May is a holiday, which is why the
+project runs into the evening of 30 April rather than spilling into the next
+morning.
+
 ## Input format
 
 An instance is a single JSON object. These keys are read:

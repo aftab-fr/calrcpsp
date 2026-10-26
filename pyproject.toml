@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "calrcpsp"
-version = "1.0.1"
+version = "1.1.0"
 description = "Calendar-aware resource-constrained project scheduling with max-plus algebra"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -60,6 +60,11 @@ calrcpsp = ["py.typed"]
 testpaths = ["tests"]
 addopts = "-q --strict-markers"
 filterwarnings = ["error"]
+markers = [
+    "unit: exercises one module on its own, with inputs built in the test",
+    "integration: runs several modules together, usually a full solve or repair",
+    "benchmark: runs over every published instance the test session can see",
+]
 
 [tool.ruff]
 line-length = 100

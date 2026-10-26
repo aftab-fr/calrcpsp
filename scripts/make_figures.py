@@ -17,7 +17,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyArrowPatch, Rectangle
+from matplotlib.patches import Rectangle
 
 from calrcpsp import WorkCalendar, load_instance, solve
 
@@ -38,12 +38,12 @@ plt.rcParams.update(
     {
         "font.family": "sans-serif",
         "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-        "font.size": 8,
-        "axes.labelsize": 8,
-        "axes.titlesize": 8.5,
-        "xtick.labelsize": 7.5,
-        "ytick.labelsize": 7.5,
-        "legend.fontsize": 7.5,
+        "font.size": 9.5,
+        "axes.labelsize": 9.5,
+        "axes.titlesize": 10,
+        "xtick.labelsize": 9,
+        "ytick.labelsize": 9,
+        "legend.fontsize": 9,
         "axes.edgecolor": MUTED,
         "axes.linewidth": 0.6,
         "text.color": INK,
@@ -70,71 +70,12 @@ def _read(name: str) -> list[dict]:
         return list(csv.DictReader(fh))
 
 
-# -- figure 1: architecture ------------------------------------------------
-
-def figure_architecture() -> None:
-    fig, ax = plt.subplots(figsize=(6.0, 4.7))
-    ax.set_xlim(0, 100)
-    ax.set_ylim(0, 100)
-    ax.axis("off")
-
-    def box(x, y, w, h, title, body, accent=False):
-        ax.add_patch(
-            Rectangle(
-                (x, y), w, h,
-                facecolor="#ffffff" if accent else FILL,
-                edgecolor=BLUE if accent else MUTED,
-                linewidth=1.2 if accent else 0.6,
-                zorder=3,
-            )
-        )
-        ax.text(x + w / 2, y + h - 3.0, title, ha="center", va="top",
-                fontsize=7.6 if len(title) > 18 else 8, fontweight="bold",
-                color=BLUE if accent else INK, zorder=4)
-        ax.text(x + w / 2, y + h - 8.2, body, ha="center", va="top",
-                fontsize=6.3, color=MUTED, zorder=4, linespacing=1.35)
-
-    def arrow(x0, y0, x1, y1):
-        ax.add_patch(
-            FancyArrowPatch((x0, y0), (x1, y1), arrowstyle="-|>",
-                            mutation_scale=8, linewidth=0.9,
-                            color=MUTED, zorder=2)
-        )
-
-    box(2, 86, 96, 12, "instance.py",
-        "load_instance(): reads the CA-RCPSP JSON and checks keys, "
-        "task ids, durations and acyclicity")
-
-    box(2, 58, 46, 21, "calendar.py",
-        "WorkCalendar: shifts, breaks, holidays\n"
-        "W(t) and W_inverse(w), exact, by bisection\n"
-        "occupied_intervals(): pause and resume")
-    box(52, 58, 46, 21, "assignment.py",
-        "assign_resources(): skill matching\n"
-        "balanced or coverage strategy\n"
-        "reports the coverage achieved")
-
-    box(2, 29, 96, 21, "maxplus.py",
-        "build_precedence_matrix()    build_resource_matrix()    "
-        "combine_matrices()\n"
-        "closure() in O(n^3)          earliest_start_times() in O(n + e)\n"
-        "latest_start_times(): the backward pass that gives task float",
-        accent=True)
-
-    box(2, 1, 30, 21, "scheduler.py",
-        "solve(): the algebra\nin work time, then\nthe calendar mapping")
-    box(35, 1, 30, 21, "schedule.py + metrics.py",
-        "start times, makespan,\nslack, critical path,\ncompliance, conflicts")
-    box(68, 1, 30, 21, "reschedule.py",
-        "disruption targeting,\nrepair, feasibility of\nthe new schedule")
-
-    for x in (25, 75):
-        arrow(x, 86, x, 79.6)
-        arrow(x, 58, x, 50.6)
-    for x in (17, 50, 83):
-        arrow(x, 29, x, 22.6)
-    fig.savefig(FIGURES / "fig1_architecture.pdf")
-    plt.close(fig)
+# -- figure 1 is not generated here ------------------------------------------
+# fig1_architecture.pdf is drawn by hand and kept under version control as
+# paper/figures/fig1_architecture.svg. Rebuild the PDF from it with:
+#     rsvg-convert -f pdf -o paper/figures/fig1_architecture.pdf \
+#                        paper/figures/fig1_architecture.svg
+# This script deliberately does not touch it.
 
 
 # -- figure 2: the calendar ------------------------------------------------
@@ -145,7 +86,7 @@ def figure_calendar() -> None:
     reference = calendar.next_working_time(origin)
 
     fig, (ax1, ax2) = plt.subplots(
-        1, 2, figsize=(6.0, 2.6), gridspec_kw={"width_ratios": [1.05, 1]}
+        1, 2, figsize=(5.3, 2.5), gridspec_kw={"width_ratios": [1.05, 1]}
     )
 
     # (a) cumulative work-time function over three days
@@ -166,12 +107,12 @@ def figure_calendar() -> None:
     ax1.set_xlabel("calendar time")
     ax1.set_title("(a) the work-time function", loc="left")
     ax1.annotate("flat across lunch", xy=(12.5, 4.0), xytext=(16, 1.0),
-                 fontsize=6.6, color=MUTED,
+                 fontsize=8, color=MUTED,
                  arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": MUTED})
     ax1.annotate("flat overnight", xy=(20.5, 8.0), xytext=(27, 4.6),
-                 fontsize=6.6, color=MUTED,
+                 fontsize=8, color=MUTED,
                  arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": MUTED})
-    ax1.text(1.5, 23.3, "shaded = non-working", fontsize=6.6, color=MUTED)
+    ax1.text(1.5, 23.3, "shaded = non-working", fontsize=8, color=MUTED)
     _tidy(ax1)
 
     # (b) the schedule calrcpsp actually produces for the smallest instance
@@ -193,7 +134,7 @@ def figure_calendar() -> None:
             )
     ax2.set_yticks(range(len(ordered)))
     ax2.set_yticklabels(
-        [f"{t.task_id} / {t.resource_id}" for t in reversed(ordered)], fontsize=6.8
+        [f"{t.task_id} / {t.resource_id}" for t in reversed(ordered)], fontsize=8.5
     )
     ax2.set_xlim(7.5, 16.6)
     ax2.set_xticks([8, 10, 12, 14, 16])
@@ -204,7 +145,7 @@ def figure_calendar() -> None:
     critical = ordered[[t.critical for t in ordered].index(True)]
     ax2.annotate("critical task, 6.93 work-hours,\npauses for lunch, ends 15:55",
                  xy=(14.9, len(ordered) - 1.3 - ordered.index(critical)),
-                 xytext=(11.35, 1.9), fontsize=6.3, color=ORANGE,
+                 xytext=(11.35, 1.9), fontsize=8, color=ORANGE,
                  arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": ORANGE})
     _tidy(ax2, grid_axis="x")
 
@@ -223,7 +164,7 @@ def figure_scaling() -> None:
     calendar_ms = [float(r["calendar_ms_mean"]) for r in rows]
     closure = [float(r["closure_total_ms"]) for r in rows]
 
-    fig, ax = plt.subplots(figsize=(6.0, 2.6))
+    fig, ax = plt.subplots(figsize=(5.3, 2.5))
     ax.plot(tasks, closure, color=ORANGE, linewidth=1.6, marker="s",
             markersize=4.5, linestyle="--", label="closure route, $O(n^3)$", zorder=4)
     ax.plot(tasks, total, color=BLUE, linewidth=1.6, marker="o",
@@ -241,13 +182,15 @@ def figure_scaling() -> None:
     ax.set_ylabel("time (ms)")
     ax.set_xticks([5, 10, 25, 50, 100, 250, 500, 1000])
     ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+    ax.get_xaxis().set_minor_formatter(matplotlib.ticker.NullFormatter())
+    ax.get_yaxis().set_minor_formatter(matplotlib.ticker.NullFormatter())
     ax.annotate(f"{total[-1]:.1f} ms", xy=(tasks[-1], total[-1]),
                 xytext=(tasks[-1] * 0.42, total[-1] * 3.4),
-                fontsize=7, color=BLUE,
+                fontsize=8.5, color=BLUE,
                 arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": BLUE})
     ax.annotate(f"{closure[-1]:.0f} ms", xy=(tasks[-1], closure[-1]),
                 xytext=(tasks[-1] * 0.30, closure[-1] * 0.32),
-                fontsize=7, color=ORANGE,
+                fontsize=8.5, color=ORANGE,
                 arrowprops={"arrowstyle": "-", "linewidth": 0.6, "color": ORANGE})
     ax.legend(frameon=False, loc="upper left", handlelength=2.6,
               borderaxespad=0.1)
@@ -268,7 +211,7 @@ def figure_compliance() -> None:
     positions = range(len(rows))
     height = 0.38
 
-    fig, ax = plt.subplots(figsize=(6.0, 3.4))
+    fig, ax = plt.subplots(figsize=(5.3, 3.3))
     ax.barh([p + height / 2 + 0.01 for p in positions], working, height,
             color=BLUE, edgecolor="white", linewidth=0.8,
             label="working-time compliance", zorder=3)
@@ -278,7 +221,7 @@ def figure_compliance() -> None:
 
     for p, value in zip(positions, uninterrupted, strict=True):
         ax.text(value + 0.012, p - height / 2 - 0.01, f"{value:.3f}",
-                va="center", fontsize=6.6, color=MUTED)
+                va="center", fontsize=8, color=MUTED)
 
     ax.set_yticks(list(positions))
     ax.set_yticklabels(labels, fontsize=7)
@@ -286,7 +229,7 @@ def figure_compliance() -> None:
     ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
     ax.set_xlabel("share of the instance")
     ax.text(1.005, len(rows) - 0.5 + 0.35, "1.000 on all twelve",
-            fontsize=6.8, color=BLUE, va="center")
+            fontsize=8.5, color=BLUE, va="center")
     ax.legend(frameon=False, ncol=2, loc="lower center",
               bbox_to_anchor=(0.5, -0.30))
     _tidy(ax, grid_axis="x")
@@ -304,7 +247,7 @@ def figure_disruption() -> None:
     absorbed = [i for i, value in enumerate(increase) if value == 0.0]
     moved = [i for i, value in enumerate(increase) if value > 0.0]
 
-    fig, ax = plt.subplots(figsize=(6.0, 2.6))
+    fig, ax = plt.subplots(figsize=(5.3, 2.5))
     ax.scatter([times[i] for i in moved], [increase[i] for i in moved],
                s=26, facecolor=BLUE, edgecolor="white", linewidth=0.7,
                marker="o", label=f"makespan grew ({len(moved)} records)", zorder=4)
@@ -325,7 +268,6 @@ def figure_disruption() -> None:
 
 
 def main() -> None:
-    figure_architecture()
     figure_calendar()
     figure_scaling()
     figure_compliance()
