@@ -1,0 +1,13 @@
+scenario_id,n_tasks,n_resources,calrcpsp_makespan,calrcpsp_algebra_ms,calrcpsp_total_ms,calrcpsp_coverage,seq_opt_makespan,seq_opt_bound,seq_opt_status,seq_opt_seconds,seq_gap_pct,free_opt_makespan,free_opt_bound,free_opt_status,free_opt_seconds,free_gap_pct,free_opt_coverage
+tiny_quality_demo,5,5,5.91,0.078,1.337,0.7,5.91,5.91,OPTIMAL,0.003,0.0,5.91,5.91,OPTIMAL,0.005,0.0,0.7
+tiny_manufacturing_demo,6,5,6.93,0.077,1.864,0.75,6.93,6.93,OPTIMAL,0.003,0.0,6.93,6.93,OPTIMAL,0.004,0.0,0.75
+tiny_assembly_demo,8,5,11.59,0.115,1.927,0.875,9.31,9.31,OPTIMAL,0.004,24.49,9.31,9.31,OPTIMAL,0.005,24.49,0.875
+small_disrupted_manufacturing_25,25,10,20.76,0.207,2.98,0.82,19.35,19.35,OPTIMAL,0.008,7.29,19.11,19.11,OPTIMAL,0.019,8.63,0.82
+small_multi_resource_35,35,10,20.26,0.245,3.161,0.8714,16.86,16.86,OPTIMAL,0.008,20.17,14.02,14.02,OPTIMAL,0.019,44.51,0.8571
+small_shift_operations_40,40,10,17.63,0.259,3.653,0.8375,17.63,17.63,OPTIMAL,0.005,0.0,16.72,16.72,OPTIMAL,0.016,5.44,0.825
+medium_complex_manufacturing_120,120,20,34.34,0.679,7.313,0.8583,30.99,30.99,OPTIMAL,0.016,10.81,28.29,28.29,OPTIMAL,1.97,21.39,0.875
+medium_multi_shift_factory_150,150,20,63.51,0.892,8.031,0.83,63.51,63.51,OPTIMAL,0.009,0.0,63.51,63.51,OPTIMAL,0.062,0.0,0.8333
+medium_supply_chain_180,180,20,57.31,1.05,9.411,0.8639,55.33,55.33,OPTIMAL,0.019,3.58,49.41,49.41,OPTIMAL,0.327,15.99,0.8583
+large_industrial_scale_500,500,40,46.92,36.091,86.69,0.824,44.16,44.16,OPTIMAL,0.058,6.25,39.27,39.04,FEASIBLE,240.095,19.48,0.822
+large_enterprise_manufacturing_750,750,40,76.32,5.444,95.688,0.8533,66.46,66.46,OPTIMAL,0.061,14.84,63.37,63.37,OPTIMAL,5.624,20.44,0.8513
+large_mega_scale_factory_1000,1000,40,92.88,29.188,88.853,0.823,89.64,89.64,OPTIMAL,0.117,3.61,85.94,84.01,FEASIBLE,240.341,8.08,0.821

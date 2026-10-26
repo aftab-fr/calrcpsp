@@ -1,0 +1,21 @@
+{
+  "calrcpsp_version": "1.0.1",
+  "python": "3.13.2",
+  "records": 34,
+  "all_repairs_feasible": true,
+  "records_with_no_task_moved": 4,
+  "records_with_no_makespan_change": 5,
+  "tasks_reassigned_total": 0,
+  "tasks_moved_pct": {
+    "min": 0.0,
+    "max": 37.5,
+    "mean": 9.72,
+    "median": 5.83
+  },
+  "start_shift_max_h": {
+    "min": 0.0,
+    "max": 240.0,
+    "mean": 30.84
+  },
+  "critical_path_changed_records": 11
+}

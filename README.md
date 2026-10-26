@@ -393,6 +393,46 @@ All numbers in this README come from `scripts/run_benchmark.py`.
 
 ---
 
+## Reproducing the experiments
+
+Three scripts produce every number in the article. The first needs nothing
+beyond the library; the other two need CP-SAT and matplotlib, which install
+with the `experiments` extra:
+
+```bash
+python -m pip install -e ".[test,experiments]"
+```
+
+Point them at a copy of the published dataset:
+
+```bash
+DATA=/path/to/carm-plus-dataset/data/scenarios
+
+# Table 3: solve all twelve instances, with timings and both compliance
+# measures. --closure also runs the O(n^3) route and checks the two agree.
+python scripts/run_benchmark.py --dataset "$DATA" --repeats 5 --closure
+
+# Table 4: how far the makespan is from optimal, against CP-SAT. The two
+# gaps are reported separately: sequencing only, and assignment as well.
+python experiments/exp1_optimality_gap.py --dataset "$DATA" --time-limit 300
+
+# Section 3.4: what the repair moves, per disruption record.
+python experiments/exp2_disruption_detail.py --dataset "$DATA"
+
+# Figures 2 to 5, drawn from whatever is in results/
+python scripts/make_figures.py
+```
+
+Output lands in `results/`, and the copies committed there are what the
+article reports. Versions used: Python 3.13.2, NumPy 2.2.6, OR-Tools 9.15.6755,
+on an Apple arm64 machine running macOS 26.6.2.
+
+Two cautions. Check the machine is otherwise idle before trusting a timing
+run: a stray background job inflated ours by roughly a factor of two before we
+noticed. And `exp1_optimality_gap.py` proves optimality on instances up to 180
+tasks in well under a second, but can take several minutes per model at 500
+tasks and above.
+
 ## Testing
 
 ```bash

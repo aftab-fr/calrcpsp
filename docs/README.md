@@ -11,3 +11,7 @@ Whenever the module graph changes, re-run:
 It reads the arrows out of the SVG and the imports out of `src/calrcpsp`, and
 fails if an arrow points at the wrong module, a real dependency has no arrow,
 or a connector crosses a box it does not belong to.
+
+`figures/` holds the figures used in the article. Figures 2 to 5 are redrawn
+from `results/` by `scripts/make_figures.py`; figure 1 is `architecture.svg`
+converted to PDF.

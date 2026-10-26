@@ -23,7 +23,7 @@ from calrcpsp import WorkCalendar, load_instance, solve
 
 REPO = Path(__file__).resolve().parent.parent
 RESULTS = REPO / "results"
-FIGURES = REPO / "paper" / "figures"
+FIGURES = REPO / "docs" / "figures"
 FIGURES.mkdir(parents=True, exist_ok=True)
 
 # Slots 1 to 3 of the reference categorical palette, used unchanged.
@@ -73,8 +73,8 @@ def _read(name: str) -> list[dict]:
 # -- figure 1 is not generated here ------------------------------------------
 # fig1_architecture.pdf is drawn by hand and kept under version control as
 # paper/figures/fig1_architecture.svg. Rebuild the PDF from it with:
-#     rsvg-convert -f pdf -o paper/figures/fig1_architecture.pdf \
-#                        paper/figures/fig1_architecture.svg
+#     rsvg-convert -f pdf -o docs/figures/fig1_architecture.pdf \
+#                        docs/architecture.svg
 # This script deliberately does not touch it.
 
 

@@ -1,0 +1,22 @@
+{
+  "instances": 12,
+  "seq_proved_optimal": 12,
+  "free_proved_optimal": 10,
+  "sequencing_gap_pct": {
+    "min": 0.0,
+    "max": 24.49,
+    "mean": 7.59,
+    "median": 4.93
+  },
+  "full_gap_pct": {
+    "min": 0.0,
+    "max": 44.51,
+    "mean": 14.04,
+    "median": 12.31
+  },
+  "calrcpsp_total_ms": {
+    "min": 1.337,
+    "max": 95.688
+  },
+  "cpsat_seconds_max": 240.341
+}
