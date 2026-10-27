@@ -433,14 +433,27 @@ noticed. And `exp1_optimality_gap.py` proves optimality on instances up to 180
 tasks in well under a second, but can take several minutes per model at 500
 tasks and above.
 
+One note on comparing the two output files. `results/final/instance_results.csv`
+reports `solve_total_ms_mean`, the mean of five repeats, and that is the column
+Table 3 prints. `results/exp1_optimality_gap/optimality_gap_all12.csv` reports
+`calrcpsp_total_ms` from a single unrepeated run made inside the CP-SAT
+experiment, where the machine is also running the solver. The second is larger
+and noisier. It is there to show the two solvers were given the same instance,
+not as a timing measurement, so quote the first when citing solve times.
+
 ## Testing
 
 ```bash
 pytest                                                    # 6 vendored instances
 CALRCPSP_DATASET=/path/to/data/scenarios pytest           # all 12
+pytest -m unit                                            # or integration, benchmark
+pytest --cov=calrcpsp --cov-report=term                   # needs the test extra
 ```
 
-219 tests on the vendored fixtures, 387 on the full deposit. They check:
+244 tests on the vendored fixtures (61 unit, 9 integration, 174 benchmark) and
+418 on the full deposit. Statement coverage is 83 percent, or 90 percent
+excluding `cli.py`, which has no automated tests and is exercised by the
+command line checks in CI instead. They check:
 
 - `W` and `W_inverse` round trip, stay monotonic, skip breaks, nights,
   weekends and holidays, and handle shifts that cross midnight;

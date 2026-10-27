@@ -1,0 +1,56 @@
+{
+  "title": "calrcpsp: calendar-aware resource-constrained project scheduling in Python",
+  "description": "<p>A Python library for project scheduling under work-calendar constraints. It reads the published CA-RCPSP benchmark format, builds and solves max-plus scheduling matrices, and returns start times, makespan, task slack, the critical path, resource utilisation and two calendar compliance measures. It also applies a disruption and repairs the schedule. Shifts, breaks and holidays are handled exactly through a cumulative work-time function and its inverse, with no quantisation of start and finish times.</p>",
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "version": "1.1.2",
+  "language": "eng",
+  "keywords": [
+    "project scheduling",
+    "resource-constrained scheduling",
+    "calendar constraints",
+    "max-plus algebra",
+    "RCPSP",
+    "CA-RCPSP",
+    "operations research",
+    "Python"
+  ],
+  "creators": [
+    {
+      "name": "Uddin, Md Aftab",
+      "affiliation": "M-Plus Group, Lachapelle Sous Rougemont, France"
+    },
+    {
+      "name": "Gaber, Jaafar",
+      "affiliation": "Universite Marie et Louis Pasteur, UTBM, CNRS, Institut FEMTO-ST, Belfort, France"
+    },
+    {
+      "name": "Petitjean, Pierre",
+      "affiliation": "M-Plus Group, Lachapelle Sous Rougemont, France"
+    },
+    {
+      "name": "Cortinovis, Francois",
+      "affiliation": "M-Plus Group, Lachapelle Sous Rougemont, France"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1016/j.dib.2026.113256",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.20553817",
+      "relation": "references",
+      "resource_type": "dataset",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/aftab-fr/calrcpsp",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ Every step is also callable on its own: see :func:`assign_resources`,
 
 from __future__ import annotations
 
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 
 from .assignment import Assignment, assign_resources
 from .calendar import DEFAULT_PROJECT_START, WorkCalendar
