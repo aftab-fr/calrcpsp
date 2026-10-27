@@ -11,6 +11,14 @@ abstract: >-
   cumulative work-time function and its inverse.
 version: "1.1.2"
 date-released: "2026-10-27"
+doi: "10.5281/zenodo.23698123"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23698124"
+    description: "Archived snapshot of v1.1.2"
+  - type: doi
+    value: "10.5281/zenodo.23698123"
+    description: "Concept DOI, resolves to the latest version"
 license: MIT
 repository-code: "https://github.com/aftab-fr/calrcpsp"
 url: "https://github.com/aftab-fr/calrcpsp"

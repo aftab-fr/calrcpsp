@@ -477,6 +477,11 @@ CI runs the suite on Linux, macOS and Windows, on Python 3.10 to 3.13.
 See [`CITATION.cff`](https://github.com/aftab-fr/calrcpsp/blob/main/CITATION.cff). Please also cite the dataset article above
 if you use the CA-RCPSP instances.
 
+Each release is archived on Zenodo. Cite the version you used,
+[10.5281/zenodo.23698124](https://doi.org/10.5281/zenodo.23698124) for v1.1.2,
+or [10.5281/zenodo.23698123](https://doi.org/10.5281/zenodo.23698123) to point
+at whichever version is current.
+
 ## Licence
 
 MIT. See [`LICENSE.txt`](https://github.com/aftab-fr/calrcpsp/blob/main/LICENSE.txt).
